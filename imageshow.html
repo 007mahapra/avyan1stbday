@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Image Search</title>
+  <style>
+    .result {
+      margin-top: 20px;
+      height: 200px;
+      width: 200px;
+    }
+  </style>
+  <script>
+    function searchImage() {
+      var name = document.getElementById("name").value;
+      var imageContainer = document.getElementById("result");
+
+      // Clear previous result
+      imageContainer.innerHTML = "";
+
+      // Create an image element
+      var image = document.createElement("img");
+
+      // Set the source attribute to the image URL based on the entered name
+      image.src = name + ".jpg";
+
+      // Add alt attribute for accessibility
+      image.alt = name;
+
+      // Append the image to the container
+      imageContainer.appendChild(image);
+    }
+  </script>
+</head>
+<body>
+  <h1>User Image Search</h1>
+
+  <form onsubmit="event.preventDefault(); searchImage();">
+    <input type="text" id="name" placeholder="Enter a name" required />
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="result" style="height: 50px;width: 50px;"></div>
+</body>
+</html>

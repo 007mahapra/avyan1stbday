@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search and Display Images</title>
+  <style>
+    .responsive-image {
+      max-width: 50%;
+      height: 50%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Search and Display Images</h1>
+  
+  <form id="search-form">
+    <input type="text" id="search-input" placeholder="Enter a name">
+    <input type="submit" value="Search">
+  </form>
+
+  <div id="image-container"></div>
+
+  <script>
+    document.getElementById("search-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      var name = document.getElementById("search-input").value.toLowerCase(); // Get the name entered in lowercase
+      
+      // Create image element
+      var image = document.createElement("img");
+      image.classList.add("responsive-image");
+
+      // Set the source attribute of the image based on the name entered
+      image.src = name + ".jpg"; // Assuming the image files are named after the names entered, with a .jpg extension
+      
+      // Clear the previous image, if any
+      var imageContainer = document.getElementById("image-container");
+      imageContainer.innerHTML = "";
+      
+      // Append the new image to the image container
+      imageContainer.appendChild(image);
+    });
+  </script>
+</body>
+</html>

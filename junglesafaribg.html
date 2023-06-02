@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animated Jungle Animals</title>
+  <style>
+    body {
+      background: url(jungle.jpg) no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .animal {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    @keyframes move {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(calc(100vw - 100px), calc(100vh - 100px));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="animal-container"></div>
+
+  <script>
+    function createAnimal() {
+      var animal = document.createElement("div");
+      animal.classList.add("animal");
+
+      var gifImages = [
+        "lion.gif",
+        "monkey.gif",
+        "elephant.gif",
+        "jiraffe.gif",
+        "bear.gif"
+        // Add more animal GIF images here
+      ];
+
+      var randomGif = gifImages[Math.floor(Math.random() * gifImages.length)];
+      animal.style.backgroundImage = "url(" + randomGif + ")";
+
+      var randomX = Math.floor(Math.random() * (window.innerWidth - 100));
+      var randomY = Math.floor(Math.random() * (window.innerHeight - 100));
+      animal.style.left = randomX + "px";
+      animal.style.top = randomY + "px";
+
+      var randomDuration = Math.floor(Math.random() * 10 + 5) + "s";
+      animal.style.animation = "move " + randomDuration + " infinite alternate";
+
+      document.getElementById("animal-container").appendChild(animal);
+    }
+
+    window.onload = function() {
+      var numOfAnimals = 5; // Number of animals you want to display
+
+      for (var i = 0; i < numOfAnimals; i++) {
+        createAnimal();
+      }
+    };
+  </script>
+</body>
+</html>
